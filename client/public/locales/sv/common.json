@@ -293,7 +293,15 @@
         }
     },
     "home": {
-        "home": "Hem"
+        "home": "Hem",
+        "total_weight": "Totalt lager",
+        "total_value": "Värde",
+        "low_stock": "Lågt lager",
+        "all_stocked": "Alla spolar är välfyllda",
+        "recently_used": "Nyligen använda",
+        "no_recent": "Inga nyligen använda spolar",
+        "by_material": "Per material",
+        "by_location": "Per plats"
     },
     "table": {
         "actions": "Åtgärder"
@@ -382,6 +390,8 @@
     "kofi": "Dricksa mig på Ko-fi",
     "locations": {
         "new_location": "Ny plats",
-        "no_location": "Ingen plats"
+        "no_location": "Ingen plats",
+        "error_empty": "Namnet får inte vara tomt",
+        "error_exists": "Platsen finns redan"
     }
 }
