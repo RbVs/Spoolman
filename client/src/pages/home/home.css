@@ -272,6 +272,10 @@
   flex-shrink: 0;
 }
 
+.low-stock-info {
+  min-width: 0;
+}
+
 .low-stock-info h4 {
   font-size: 13px;
   font-weight: 600;
@@ -567,5 +571,25 @@
     flex: none;
     height: auto;
     overflow-y: visible;
+  }
+
+  /* Low stock items: compact on mobile */
+  .low-stock-item {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .low-stock-color-dot {
+    width: 32px;
+    height: 32px;
+  }
+
+  .low-stock-right {
+    margin-left: auto;
+  }
+
+  .low-stock-bar {
+    width: 100px;
   }
 }
