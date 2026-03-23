@@ -388,3 +388,65 @@
   opacity: 0.3;
   font-size: 13px;
 }
+
+/* Empty Hero */
+.empty-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  gap: 0;
+}
+
+.empty-hero-icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.empty-hero-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 8px 0;
+}
+
+.empty-hero-desc {
+  font-size: 14px;
+  opacity: 0.5;
+  margin: 0 0 32px 0;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.empty-hero-desc a {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.empty-hero-btn {
+  height: 48px !important;
+  padding: 0 32px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.empty-hero-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.empty-hero-btn:active {
+  transform: scale(0.97);
+}

@@ -151,11 +151,23 @@ export const Home = () => {
 
   if (!hasSpools) {
     return (
-      <div className="dashboard" style={{ paddingTop: 64, textAlign: "center" }}>
-        <p>{t("home.welcome")}</p>
-        <p>
+      <div className="dashboard empty-hero">
+        <div className="empty-hero-icon" style={{ background: token.colorPrimary }}>
+          <DatabaseOutlined style={{ fontSize: 40, color: "#fff" }} />
+        </div>
+        <h2 className="empty-hero-title">{t("home.welcome")}</h2>
+        <p className="empty-hero-desc">
           <Trans i18nKey="home.description" components={{ helpPageLink: <Link to="/help" /> }} />
         </p>
+        <Button
+          type="primary"
+          size="large"
+          icon={<PlusOutlined />}
+          onClick={() => navigate("/spool/create")}
+          className="empty-hero-btn"
+        >
+          {t("spool.titles.create")}
+        </Button>
       </div>
     );
   }
