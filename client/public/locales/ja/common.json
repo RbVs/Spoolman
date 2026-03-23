@@ -394,6 +394,8 @@
     },
     "home": {
         "home": "ホーム",
+        "welcome": "Spoolmanへようこそ！",
+        "description": "まだスプールが追加されていないようです。始め方については<helpPageLink>ヘルプページ</helpPageLink>をご覧ください。",
         "total_weight": "総在庫",
         "total_value": "総額",
         "low_stock": "在庫不足",

@@ -386,6 +386,8 @@
     },
     "home": {
         "home": "หน้าแรก",
+        "welcome": "ยินดีต้อนรับสู่ Spoolman ของคุณ!",
+        "description": "ดูเหมือนว่าคุณยังไม่ได้เพิ่มม้วนใดๆ ดู<helpPageLink>หน้าช่วยเหลือ</helpPageLink>เพื่อเริ่มต้นใช้งาน",
         "total_weight": "สต็อกทั้งหมด",
         "total_value": "มูลค่า",
         "low_stock": "สต็อกต่ำ",

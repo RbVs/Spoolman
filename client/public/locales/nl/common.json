@@ -350,6 +350,8 @@
     "kofi": "Tip mij op Ko-fi",
     "home": {
         "home": "Thuis",
+        "welcome": "Welkom bij je Spoolman-installatie!",
+        "description": "Het lijkt erop dat je nog geen spoelen hebt toegevoegd. Bekijk de <helpPageLink>helppagina</helpPageLink> om aan de slag te gaan.",
         "total_weight": "Totale voorraad",
         "total_value": "Waarde",
         "low_stock": "Lage voorraad",

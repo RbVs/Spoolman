@@ -325,6 +325,8 @@
     },
     "home": {
         "home": "主頁",
+        "welcome": "歡迎使用您的 Spoolman！",
+        "description": "看起來您還沒有添加任何線軸。請查看<helpPageLink>說明頁面</helpPageLink>以開始使用。",
         "total_weight": "總庫存",
         "total_value": "總價值",
         "low_stock": "庫存不足",

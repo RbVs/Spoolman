@@ -278,6 +278,8 @@
     "kofi": "Tipp a Ko-fi-ra",
     "home": {
         "home": "Kezdő lap",
+        "welcome": "Üdvözöljük a Spoolman példányában!",
+        "description": "Úgy tűnik, még nem adott hozzá orsókat. Nézze meg a <helpPageLink>Súgó oldalt</helpPageLink> az induláshoz.",
         "total_weight": "Teljes készlet",
         "total_value": "Érték",
         "low_stock": "Alacsony készlet",

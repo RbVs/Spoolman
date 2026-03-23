@@ -352,6 +352,7 @@
     "home": {
         "home": "Accueil",
         "welcome": "Bienvenue sur votre instance Spoolman !",
+        "description": "Il semble que vous n'ayez pas encore ajouté de bobines. Consultez la <helpPageLink>page d'aide</helpPageLink> pour commencer.",
         "total_weight": "Stock total",
         "total_value": "Valeur",
         "low_stock": "Stock faible",

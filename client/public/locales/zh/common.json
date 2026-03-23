@@ -340,6 +340,8 @@
     "kofi": "在Ko-fi上给我打赏一点小费",
     "home": {
         "home": "主页",
+        "welcome": "欢迎使用您的 Spoolman！",
+        "description": "看起来您还没有添加任何线轴。请查看<helpPageLink>帮助页面</helpPageLink>以开始使用。",
         "total_weight": "总库存",
         "total_value": "总价值",
         "low_stock": "库存不足",

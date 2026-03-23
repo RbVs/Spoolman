@@ -317,6 +317,8 @@
     "kofi": "Donér på Ko-fi",
     "home": {
         "home": "Hjem",
+        "welcome": "Velkommen til din Spoolman-instans!",
+        "description": "Det ser ud til, at du endnu ikke har tilføjet nogen spoler. Se <helpPageLink>hjælpesiden</helpPageLink> for at komme i gang.",
         "total_weight": "Samlet beholdning",
         "total_value": "Værdi",
         "low_stock": "Lav beholdning",

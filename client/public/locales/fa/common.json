@@ -289,6 +289,8 @@
     },
     "home": {
         "home": "صفحه اصلی",
+        "welcome": "به نمونه Spoolman خود خوش آمدید!",
+        "description": "به نظر می‌رسد هنوز هیچ قرقره‌ای اضافه نکرده‌اید. برای شروع به <helpPageLink>صفحه راهنما</helpPageLink> مراجعه کنید.",
         "total_weight": "موجودی کل",
         "total_value": "ارزش",
         "low_stock": "موجودی کم",
