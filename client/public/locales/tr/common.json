@@ -301,7 +301,8 @@
         "recently_used": "Son kullanılan",
         "no_recent": "Son kullanılan makara yok",
         "by_material": "Malzemeye göre",
-        "by_location": "Konuma göre"
+        "by_location": "Konuma göre",
+        "telemetry_subtitle": "Filament envanterinizin gerçek zamanlı durumu."
     },
     "help": {
         "help": "Yardım",

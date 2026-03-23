@@ -302,7 +302,8 @@
         "recently_used": "Usadas recentemente",
         "no_recent": "Nenhuma bobina usada recentemente",
         "by_material": "Por material",
-        "by_location": "Por localização"
+        "by_location": "Por localização",
+        "telemetry_subtitle": "Status em tempo real do seu inventário de filamento."
     },
     "help": {
         "help": "Ajuda",

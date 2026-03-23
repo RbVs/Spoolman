@@ -359,7 +359,8 @@
         "recently_used": "Zuletzt verwendet",
         "no_recent": "Keine kürzlich verwendeten Spulen",
         "by_material": "Nach Material",
-        "by_location": "Nach Standort"
+        "by_location": "Nach Standort",
+        "telemetry_subtitle": "Echtzeitstatus deines Filament-Inventars."
     },
     "settings": {
         "header": "Einstellungen",

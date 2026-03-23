@@ -345,7 +345,8 @@
         "recently_used": "Utilizate recent",
         "no_recent": "Nicio bobină utilizată recent",
         "by_material": "După material",
-        "by_location": "După locație"
+        "by_location": "După locație",
+        "telemetry_subtitle": "Starea în timp real a inventarului de filament."
     },
     "scanner": {
         "error": {

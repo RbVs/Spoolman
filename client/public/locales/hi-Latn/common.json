@@ -22,7 +22,8 @@
         "recently_used": "Haal hi mein istemal ki gayi",
         "no_recent": "Koi haal hi mein istemal ki gayi spool nahi",
         "by_material": "Material ke anusaar",
-        "by_location": "Jagah ke anusaar"
+        "by_location": "Jagah ke anusaar",
+        "telemetry_subtitle": "Aapke filament inventory ki real-time sthiti."
     },
     "locations": {
         "error_empty": "Naam khaali nahi ho sakta",

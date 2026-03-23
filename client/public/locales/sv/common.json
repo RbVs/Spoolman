@@ -301,7 +301,8 @@
         "recently_used": "Nyligen använda",
         "no_recent": "Inga nyligen använda spolar",
         "by_material": "Per material",
-        "by_location": "Per plats"
+        "by_location": "Per plats",
+        "telemetry_subtitle": "Realtidsstatus för ditt filamentlager."
     },
     "table": {
         "actions": "Åtgärder"

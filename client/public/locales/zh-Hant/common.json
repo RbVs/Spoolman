@@ -332,7 +332,8 @@
         "recently_used": "最近使用",
         "no_recent": "沒有最近使用的線軸",
         "by_material": "按材料",
-        "by_location": "按位置"
+        "by_location": "按位置",
+        "telemetry_subtitle": "耗材庫存即時狀態。"
     },
     "help": {
         "help": "說明",

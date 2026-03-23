@@ -360,7 +360,8 @@
         "recently_used": "Naposledy použité",
         "no_recent": "Žádné nedávno použité cívky",
         "by_material": "Podle materiálu",
-        "by_location": "Podle umístění"
+        "by_location": "Podle umístění",
+        "telemetry_subtitle": "Stav vašeho inventáře filamentů v reálném čase."
     },
     "settings": {
         "extra_fields": {

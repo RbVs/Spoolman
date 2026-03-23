@@ -360,7 +360,8 @@
         "recently_used": "Usadas recientemente",
         "no_recent": "No hay bobinas usadas recientemente",
         "by_material": "Por material",
-        "by_location": "Por ubicación"
+        "by_location": "Por ubicación",
+        "telemetry_subtitle": "Estado en tiempo real de tu inventario de filamento."
     },
     "settings": {
         "header": "Ajustes",

@@ -357,7 +357,8 @@
         "recently_used": "Recent gebruikt",
         "no_recent": "Geen recent gebruikte spoelen",
         "by_material": "Per materiaal",
-        "by_location": "Per locatie"
+        "by_location": "Per locatie",
+        "telemetry_subtitle": "Realtime status van je filamentvoorraad."
     },
     "settings": {
         "header": "Instellingen",

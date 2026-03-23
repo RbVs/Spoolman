@@ -359,7 +359,8 @@
         "recently_used": "Utilisées récemment",
         "no_recent": "Aucune bobine utilisée récemment",
         "by_material": "Par matériau",
-        "by_location": "Par emplacement"
+        "by_location": "Par emplacement",
+        "telemetry_subtitle": "État en temps réel de votre inventaire de filament."
     },
     "settings": {
         "settings": "Paramètres",

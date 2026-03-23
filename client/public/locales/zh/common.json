@@ -347,7 +347,8 @@
         "recently_used": "最近使用",
         "no_recent": "没有最近使用的线轴",
         "by_material": "按材料",
-        "by_location": "按位置"
+        "by_location": "按位置",
+        "telemetry_subtitle": "耗材库存实时状态。"
     },
     "help": {
         "help": "帮助",

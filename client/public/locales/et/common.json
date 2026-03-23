@@ -71,7 +71,8 @@
         "recently_used": "Hiljuti kasutatud",
         "no_recent": "Hiljuti kasutatud poole pole",
         "by_material": "Materjali järgi",
-        "by_location": "Asukoha järgi"
+        "by_location": "Asukoha järgi",
+        "telemetry_subtitle": "Teie filamendi varude reaalajas olek."
     },
     "locations": {
         "error_empty": "Nimi ei tohi olla tühi",

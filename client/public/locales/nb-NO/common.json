@@ -350,7 +350,8 @@
         "recently_used": "Nylig brukt",
         "no_recent": "Ingen nylig brukte spoler",
         "by_material": "Etter materiale",
-        "by_location": "Etter plassering"
+        "by_location": "Etter plassering",
+        "telemetry_subtitle": "Sanntidsstatus for filamentlageret ditt."
     },
     "help": {
         "help": "Hjelp",

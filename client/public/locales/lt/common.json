@@ -302,7 +302,8 @@
         "recently_used": "Neseniai naudotos",
         "no_recent": "Nėra neseniai naudotų ričių",
         "by_material": "Pagal medžiagą",
-        "by_location": "Pagal vietą"
+        "by_location": "Pagal vietą",
+        "telemetry_subtitle": "Jūsų filamento atsargų būsena realiu laiku."
     },
     "help": {
         "help": "Pagalba",

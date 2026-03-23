@@ -285,7 +285,8 @@
         "recently_used": "Nemrég használt",
         "no_recent": "Nincsenek nemrég használt orsók",
         "by_material": "Anyag szerint",
-        "by_location": "Hely szerint"
+        "by_location": "Hely szerint",
+        "telemetry_subtitle": "A filament készleted valós idejű állapota."
     },
     "help": {
         "resources": {

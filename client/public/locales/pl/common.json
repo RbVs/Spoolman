@@ -360,7 +360,8 @@
         "recently_used": "Ostatnio używane",
         "no_recent": "Brak ostatnio używanych szpul",
         "by_material": "Wg materiału",
-        "by_location": "Wg lokalizacji"
+        "by_location": "Wg lokalizacji",
+        "telemetry_subtitle": "Stan zapasów filamentu w czasie rzeczywistym."
     },
     "settings": {
         "settings": "Ustawienia",
