@@ -1,13 +1,17 @@
-import { PlusOutlined } from "@ant-design/icons";
 import { useList, useTranslate } from "@refinedev/core";
-import { Button, Input, Modal, Spin } from "antd";
+import { Input, Modal, Spin } from "antd";
 import { useEffect, useMemo, useState } from "react";
 import { useSetSetting } from "../../../utils/querySettings";
 import { ISpool } from "../../spools/model";
 import { EMPTYLOC, useLocations, useLocationsSpoolOrders, useRenameSpoolLocation } from "../functions";
 import { Location } from "./location";
 
-export function LocationContainer() {
+interface LocationContainerProps {
+  modalOpen: boolean;
+  setModalOpen: (open: boolean) => void;
+}
+
+export function LocationContainer({ modalOpen, setModalOpen }: LocationContainerProps) {
   const t = useTranslate();
   const renameSpoolLocation = useRenameSpoolLocation();
 
@@ -150,7 +154,6 @@ export function LocationContainer() {
     }
   }, [locationsList, settingsLocations, setLocationsSetting]);
 
-  const [modalOpen, setModalOpen] = useState(false);
   const [newLocationName, setNewLocationName] = useState("");
   const [modalError, setModalError] = useState("");
 
@@ -213,11 +216,6 @@ export function LocationContainer() {
         />
         {modalError && <div style={{ color: "#ff4d4f", fontSize: 12, marginTop: 4 }}>{modalError}</div>}
       </Modal>
-      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
-        <Button type="primary" icon={<PlusOutlined />} onClick={() => setModalOpen(true)}>
-          {t("locations.new_location")}
-        </Button>
-      </div>
       {!isLoading && (spoolData?.data?.length ?? 0) === 0 && (
         <div className="loc-empty-state" style={{ padding: 48 }}>
           {t("locations.no_locations_help")}

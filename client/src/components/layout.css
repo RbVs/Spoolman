@@ -39,3 +39,18 @@
     overflow: visible !important;
   }
 }
+
+/* Mobile: show only icons in list header buttons */
+@media (max-width: 768px) {
+  [class*="page-header-heading-extra"] .ant-btn > .ant-btn-icon + span {
+    display: none !important;
+  }
+
+  [class*="page-header-heading-extra"] .ant-space {
+    gap: 4px !important;
+  }
+
+  [class*="page-header-heading-extra"] .ant-btn {
+    padding-inline: 8px !important;
+  }
+}
