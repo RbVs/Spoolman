@@ -1,6 +1,6 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { useList, useTranslate } from "@refinedev/core";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import { useEffect, useMemo } from "react";
 import { useSetSetting } from "../../../utils/querySettings";
 import { ISpool } from "../../spools/model";
@@ -151,7 +151,11 @@ export function LocationContainer() {
   }, [locationsList, settingsLocations, setLocationsSetting]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ display: "flex", justifyContent: "center", padding: 48 }}>
+        <Spin size="large" />
+      </div>
+    );
   }
 
   if (isError) {
@@ -173,26 +177,27 @@ export function LocationContainer() {
     setLocationsSetting.mutate(newLocs);
   };
 
+  // Count totals
+  const totalSpools = spoolData?.data?.length ?? 0;
+  const totalLocations = locationsList.filter((l) => l !== EMPTYLOC).length;
+
   return (
     <div>
-      {!isLoading && spoolData.data.length == 0 && (
-        <div className="no-locations">{t("locations.no_locations_help")}</div>
-      )}
-      <div className="loc-metacontainer">
-        {containers}
-        <div className="newLocContainer">
-          <Button
-            type="dashed"
-            shape="circle"
-            icon={<PlusOutlined />}
-            size="large"
-            style={{
-              margin: "1em",
-            }}
-            onClick={addNewLocation}
-          />
-        </div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+        <span style={{ opacity: 0.6, fontSize: 13 }}>
+          {totalSpools} {t("spool.spool", { count: totalSpools })} in {totalLocations}{" "}
+          {t("locations.locations").toLowerCase()}
+        </span>
+        <Button type="primary" icon={<PlusOutlined />} onClick={addNewLocation}>
+          {t("locations.new_location")}
+        </Button>
       </div>
+      {!isLoading && totalSpools == 0 && (
+        <div className="loc-empty-state" style={{ padding: 48 }}>
+          {t("locations.no_locations_help")}
+        </div>
+      )}
+      <div className="loc-metacontainer">{containers}</div>
     </div>
   );
 }

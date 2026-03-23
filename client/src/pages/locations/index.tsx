@@ -1,4 +1,4 @@
-import { useTranslate } from "@refinedev/core";
+import { List } from "@refinedev/antd";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { DndProvider } from "react-dnd";
@@ -10,14 +10,12 @@ import "./locations.css";
 dayjs.extend(utc);
 
 export const Locations = () => {
-  const t = useTranslate();
   return (
-    <div>
-      <h1>{t("locations.locations")}</h1>
+    <List>
       <DndProvider backend={HTML5Backend}>
         <LocationContainer />
       </DndProvider>
-    </div>
+    </List>
   );
 };
 
