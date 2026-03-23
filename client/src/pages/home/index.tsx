@@ -9,7 +9,7 @@ import {
   WarningOutlined,
 } from "@ant-design/icons";
 import { useList, useNavigation, useTranslate } from "@refinedev/core";
-import { theme } from "antd";
+import { Button, theme, Tooltip } from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
@@ -168,16 +168,17 @@ export const Home = () => {
           <h2>{t("home.home")}</h2>
           <p className="dash-subtitle">{t("home.telemetry_subtitle") || "Real-time status of your filament inventory."}</p>
         </div>
-        <button
-          className="dash-new-btn"
-          onClick={() => navigate("/spool/create")}
-          style={{
-            background: `linear-gradient(135deg, ${token.colorPrimary}, ${token.colorPrimaryActive})`,
-            color: "#000",
-          }}
-        >
-          <PlusOutlined /> {t("spool.titles.create") || "New Spool"}
-        </button>
+        <div style={{ display: "flex", gap: 8 }}>
+          <Tooltip title={t("spool.titles.create")}>
+            <Button type="primary" icon={<DatabaseOutlined />} onClick={() => navigate("/spool/create")} />
+          </Tooltip>
+          <Tooltip title={t("filament.titles.create")}>
+            <Button type="primary" icon={<HighlightOutlined />} onClick={() => navigate("/filament/create")} />
+          </Tooltip>
+          <Tooltip title={t("vendor.titles.create")}>
+            <Button type="primary" icon={<ShopOutlined />} onClick={() => navigate("/vendor/create")} />
+          </Tooltip>
+        </div>
       </div>
 
       {/* KPI Cards */}
