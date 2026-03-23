@@ -33,7 +33,7 @@ export const Home = () => {
 
   const S = isDark
     ? { lowest: "#1a1a1a", low: "#1f1f1f", base: "#252525", high: "#2a2a2a", highest: "#313131" }
-    : { lowest: "#ffffff", low: "#f7f7f7", base: "#f0f0f0", high: "#e8e8e8", highest: "#e0e0e0" };
+    : { lowest: "#f5f5f5", low: "#ffffff", base: "#fafafa", high: "#f0f0f0", highest: "#d9d9d9" };
   const t = useTranslate();
   const navigate = useNavigate();
   const { showUrl } = useNavigation();
@@ -119,17 +119,30 @@ export const Home = () => {
     return Math.max(0, Math.min(100, (remaining / total) * 100));
   }
 
-  const matColors: Record<string, string> = {
-    PLA: "#81ecff",
-    "PLA+": "#00e3fd",
-    PETG: "#6ded00",
-    ABS: "#ff7350",
-    "ABS+": "#ff9070",
-    ASA: "#eb2f96",
-    TPU: "#b388ff",
-    "TPU 95A": "#b388ff",
-    "PETG-CF": "#00bcd4",
-    nGen: "#ff5252",
+  const matColors: Record<string, string> = isDark
+    ? {
+        PLA: "#81ecff",
+        "PLA+": "#00e3fd",
+        PETG: "#6ded00",
+        ABS: "#ff7350",
+        "ABS+": "#ff9070",
+        ASA: "#eb2f96",
+        TPU: "#b388ff",
+        "TPU 95A": "#b388ff",
+        "PETG-CF": "#00bcd4",
+        nGen: "#ff5252",
+      }
+    : {
+        PLA: "#0891b2",
+        "PLA+": "#0e7490",
+        PETG: "#16a34a",
+        ABS: "#ea580c",
+        "ABS+": "#f97316",
+        ASA: "#c026d3",
+        TPU: "#7c3aed",
+        "TPU 95A": "#7c3aed",
+        "PETG-CF": "#0d9488",
+        nGen: "#dc2626",
   };
 
   if (isLoading) {
@@ -173,7 +186,7 @@ export const Home = () => {
           <DatabaseOutlined className="kpi-bg-icon" />
           <div className="kpi-label">{t("spool.spool")}</div>
           <div className="kpi-value">{spoolsAll.result?.total ?? 0}</div>
-          <div className="kpi-footer" style={{ color: "#6ded00" }}>
+          <div className="kpi-footer" style={{ color: isDark ? "#6ded00" : "#16a34a" }}>
             <span>+{allSpools.filter((s) => dayjs(s.registered).isAfter(dayjs().subtract(30, "day"))).length} THIS MONTH</span>
           </div>
         </div>
@@ -182,7 +195,7 @@ export const Home = () => {
           <HighlightOutlined className="kpi-bg-icon" />
           <div className="kpi-label">{t("filament.filament")}</div>
           <div className="kpi-value">{filaments.result?.total ?? 0}</div>
-          <div className="kpi-footer" style={{ color: "#00e3fd" }}>
+          <div className="kpi-footer" style={{ color: isDark ? "#00e3fd" : "#0891b2" }}>
             <span>ALL SYNCED</span>
           </div>
         </div>
@@ -246,7 +259,7 @@ export const Home = () => {
                       <div className="low-stock-left">
                         <div
                           className="low-stock-color-dot"
-                          style={{ backgroundColor: hex, boxShadow: `0 0 14px ${hex}50` }}
+                          style={{ backgroundColor: hex, boxShadow: isDark ? `0 0 14px ${hex}50` : `0 1px 3px rgba(0,0,0,0.12)` }}
                         />
                         <div className="low-stock-info">
                           <h4>{getSpoolName(spool)}</h4>
@@ -263,7 +276,7 @@ export const Home = () => {
                             style={{
                               width: `${Math.max(pct, 1)}%`,
                               backgroundColor: barColor,
-                              boxShadow: `0 0 8px ${barColor}80`,
+                              boxShadow: isDark ? `0 0 8px ${barColor}80` : "none",
                             }}
                           />
                         </div>
@@ -300,7 +313,7 @@ export const Home = () => {
                         style={{
                           width: `${pct}%`,
                           backgroundColor: color,
-                          boxShadow: `0 0 12px ${color}40`,
+                          boxShadow: isDark ? `0 0 12px ${color}40` : "none",
                         }}
                       />
                     </div>
@@ -364,11 +377,11 @@ export const Home = () => {
                 let badgeBg: string;
                 let badgeColor: string;
                 if (idx === 0) {
-                  badgeBg = "rgba(129, 236, 255, 0.1)";
-                  badgeColor = "#00e3fd";
+                  badgeBg = isDark ? "rgba(129, 236, 255, 0.1)" : "rgba(8, 145, 178, 0.1)";
+                  badgeColor = isDark ? "#00e3fd" : "#0891b2";
                 } else if (idx < 3) {
-                  badgeBg = "rgba(109, 237, 0, 0.08)";
-                  badgeColor = "#6ded00";
+                  badgeBg = isDark ? "rgba(109, 237, 0, 0.08)" : "rgba(22, 163, 74, 0.1)";
+                  badgeColor = isDark ? "#6ded00" : "#16a34a";
                 } else {
                   badgeBg = isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(0, 0, 0, 0.04)";
                   badgeColor = isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(0, 0, 0, 0.4)";
