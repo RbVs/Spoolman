@@ -1,47 +1,8 @@
 import { ThemedLayout, ThemedSider, ThemedTitle } from "@refinedev/antd";
-import { useTranslate } from "@refinedev/core";
-import { Button, Divider, Menu } from "antd";
+import { Menu } from "antd";
 import React from "react";
 import Logo from "../icon.svg?react";
-import { getBasePath } from "../utils/url";
 import { Header } from "./header";
-import { Version } from "./version";
-
-const SiderFooter = ({ collapsed }: { collapsed: boolean }) => {
-  const t = useTranslate();
-
-  if (collapsed) {
-    return (
-      <div style={{ textAlign: "center", padding: "8px 0 12px" }}>
-        <Button
-          icon={<img src={getBasePath() + "/kofi_s_logo_nolabel.png"} style={{ height: "1.4em" }} />}
-          type="text"
-          size="small"
-          href="https://ko-fi.com/donkie"
-          target="_blank"
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ padding: "4px 24px 16px" }}>
-      <div style={{ fontSize: 11, opacity: 0.4, marginBottom: 4 }}>
-        {t("version")} <Version />
-      </div>
-      <Button
-        icon={<img src={getBasePath() + "/kofi_s_logo_nolabel.png"} style={{ height: "1.4em" }} />}
-        type="text"
-        size="small"
-        href="https://ko-fi.com/donkie"
-        target="_blank"
-        style={{ fontSize: 11, opacity: 0.5, padding: "0 4px" }}
-      >
-        {t("kofi")}
-      </Button>
-    </div>
-  );
-};
 
 import "./layout.css";
 
@@ -75,7 +36,6 @@ export const SpoolmanLayout = ({ children }: { children: React.ReactNode }) => (
               <Menu.Divider style={{ margin: "0 16px 4px" }} />
               {bottomItems}
               {logout}
-              <SiderFooter collapsed={collapsed} />
             </>
           );
         }}

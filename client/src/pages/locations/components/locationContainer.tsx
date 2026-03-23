@@ -150,6 +150,10 @@ export function LocationContainer() {
     }
   }, [locationsList, settingsLocations, setLocationsSetting]);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [newLocationName, setNewLocationName] = useState("");
+  const [modalError, setModalError] = useState("");
+
   if (isLoading) {
     return (
       <div style={{ display: "flex", justifyContent: "center", padding: 48 }}>
@@ -161,10 +165,6 @@ export function LocationContainer() {
   if (isError) {
     return <div>Failed to load spools</div>;
   }
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [newLocationName, setNewLocationName] = useState("");
-  const [modalError, setModalError] = useState("");
 
   const addNewLocation = () => {
     const name = newLocationName.trim();
@@ -184,10 +184,6 @@ export function LocationContainer() {
     setNewLocationName("");
     setModalError("");
   };
-
-  // Count totals
-  const totalSpools = spoolData?.data?.length ?? 0;
-  const totalLocations = locationsList.filter((l) => l !== EMPTYLOC).length;
 
   return (
     <div>
@@ -217,16 +213,12 @@ export function LocationContainer() {
         />
         {modalError && <div style={{ color: "#ff4d4f", fontSize: 12, marginTop: 4 }}>{modalError}</div>}
       </Modal>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-        <span style={{ opacity: 0.6, fontSize: 13 }}>
-          {totalSpools} {t("spool.spool", { count: totalSpools })} in {totalLocations}{" "}
-          {t("locations.locations").toLowerCase()}
-        </span>
+      <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 16 }}>
         <Button type="primary" icon={<PlusOutlined />} onClick={() => setModalOpen(true)}>
           {t("locations.new_location")}
         </Button>
       </div>
-      {!isLoading && totalSpools == 0 && (
+      {!isLoading && (spoolData?.data?.length ?? 0) === 0 && (
         <div className="loc-empty-state" style={{ padding: 48 }}>
           {t("locations.no_locations_help")}
         </div>
