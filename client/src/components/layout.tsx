@@ -43,17 +43,10 @@ const SiderFooter = ({ collapsed }: { collapsed: boolean }) => {
   );
 };
 
-// Make the sider menu a flex column so the spacer li can push items down
-const siderMenuStyle = `
-  .ant-layout-sider .ant-menu {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-`;
+import "./layout.css";
 
 export const SpoolmanLayout = ({ children }: { children: React.ReactNode }) => (
-  <>
-  <style>{siderMenuStyle}</style>
+  <div className="spoolman-root">
   <ThemedLayout
     Header={() => <Header sticky />}
     Sider={() => (
@@ -91,5 +84,5 @@ export const SpoolmanLayout = ({ children }: { children: React.ReactNode }) => (
   >
     {children}
   </ThemedLayout>
-  </>
+  </div>
 );

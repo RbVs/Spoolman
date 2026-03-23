@@ -1,7 +1,13 @@
 .dashboard {
   max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* Header */
@@ -9,7 +15,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
 }
 
 .dashboard-header h2 {
@@ -53,7 +60,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 1100px) {
@@ -129,23 +137,64 @@
   gap: 4px;
 }
 
-/* Main 8:4 Grid */
-.dashboard-grid {
+/* Main content area — fills remaining viewport */
+.dashboard-main {
+  flex: 1 1 0;
+  min-height: 0;
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 24px;
+  gap: 16px;
+  overflow: hidden;
 }
 
 @media (max-width: 1024px) {
-  .dashboard-grid {
+  .dashboard-main {
     grid-template-columns: 1fr;
   }
 }
 
-.dash-col {
+/* Left column: Tabs */
+.dashboard-main .ant-tabs {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  height: 100%;
+  min-height: 0;
+}
+
+.dashboard-main .ant-tabs-content-holder {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dashboard-main .ant-tabs-content,
+.dashboard-main .ant-tabs-tabpane-active {
+  height: 100%;
+}
+
+.dashboard-main .ant-tabs-tabpane-active {
+  overflow-y: auto;
+}
+
+.dashboard-main .ant-tabs-tabpane-active > .dash-section {
+  min-height: 100%;
+}
+
+/* Right column */
+.dash-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+  padding-top: 46px;
+}
+
+.dash-right-section {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 24px;
+  border-radius: 8px;
 }
 
 /* Section Cards */

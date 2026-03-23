@@ -302,6 +302,7 @@
         "no_recent": "No recently used spools",
         "by_material": "By Material",
         "by_location": "By Location",
+        "by_vendor": "By Manufacturer",
         "telemetry_subtitle": "Real-time status of your filament inventory."
     },
     "help": {

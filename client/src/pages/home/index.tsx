@@ -9,7 +9,7 @@ import {
   WarningOutlined,
 } from "@ant-design/icons";
 import { useList, useNavigation, useTranslate } from "@refinedev/core";
-import { Button, theme, Tooltip } from "antd";
+import { Button, Tabs, theme, Tooltip } from "antd";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import utc from "dayjs/plugin/utc";
@@ -99,7 +99,8 @@ export const Home = () => {
     const name = s.filament.vendor && "name" in s.filament.vendor ? s.filament.vendor.name : "?";
     vendorCount[name] = (vendorCount[name] ?? 0) + 1;
   });
-  const topVendor = Object.entries(vendorCount).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "-";
+  const vendorBreakdown = Object.entries(vendorCount).sort((a, b) => b[1] - a[1]);
+  const topVendor = vendorBreakdown[0]?.[0] ?? "-";
 
   // --- Helpers ---
   function getColorHex(spool: ISpool): string {
@@ -239,108 +240,159 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* Main 2:1 Grid */}
-      <div className="dashboard-grid">
-        {/* Left Column — Low Stock + Materials */}
-        <div className="dash-col">
-          {/* Low Stock */}
-          <div className="dash-section" style={{ background: S.low }}>
-            <div className="dash-section-header">
-              <h3 className="dash-section-title">
-                <WarningOutlined style={{ color: "#ff716c" }} />
-                {t("home.low_stock")}
-              </h3>
-            </div>
-            {lowStockSpools.length === 0 ? (
-              <div className="dash-empty">{t("home.all_stocked")}</div>
-            ) : (
-              <div className="low-stock-list">
-                {lowStockSpools.map((spool) => {
-                  const pct = getWeightPct(spool);
-                  const remaining = spool.remaining_weight ?? 0;
-                  const total = spool.initial_weight ?? spool.filament.weight ?? 1000;
-                  const barColor = pct <= 5 ? "#ff716c" : "#d7383b";
-                  const hex = getColorHex(spool);
+      {/* Main content area */}
+      <div className="dashboard-main">
+        {/* Left Column — Tabs */}
+        <Tabs
+          defaultActiveKey="lowstock"
+          items={[
+            {
+              key: "lowstock",
+              label: (
+                <span>
+                  <WarningOutlined style={{ color: "#ff716c" }} /> {t("home.low_stock")}
+                </span>
+              ),
+              children: (
+                <div className="dash-section" style={{ background: S.low }}>
+                  {lowStockSpools.length === 0 ? (
+                    <div className="dash-empty">{t("home.all_stocked")}</div>
+                  ) : (
+                    <div className="low-stock-list">
+                      {lowStockSpools.map((spool) => {
+                        const pct = getWeightPct(spool);
+                        const remaining = spool.remaining_weight ?? 0;
+                        const total = spool.initial_weight ?? spool.filament.weight ?? 1000;
+                        const barColor = pct <= 5 ? "#ff716c" : "#d7383b";
+                        const hex = getColorHex(spool);
 
-                  return (
-                    <div
-                      key={spool.id}
-                      className="low-stock-item"
-                      style={{ background: S.lowest }}
-                      onClick={() => navigate(showUrl("spool", spool.id))}
-                    >
-                      <div className="low-stock-left">
-                        <div
-                          className="low-stock-color-dot"
-                          style={{ backgroundColor: hex, boxShadow: isDark ? `0 0 14px ${hex}50` : `0 1px 3px rgba(0,0,0,0.12)` }}
-                        />
-                        <div className="low-stock-info">
-                          <h4>{getSpoolName(spool)}</h4>
-                          <p>Material: {spool.filament.material ?? "?"}</p>
-                        </div>
-                      </div>
-                      <div className="low-stock-right">
-                        <div className="low-stock-weight" style={{ color: barColor }}>
-                          {formatWeight(remaining, 0)} <span className="total">/ {formatWeight(total, 0)}</span>
-                        </div>
-                        <div className="low-stock-bar" style={{ background: S.highest }}>
+                        return (
                           <div
-                            className="low-stock-bar-fill"
-                            style={{
-                              width: `${Math.max(pct, 1)}%`,
-                              backgroundColor: barColor,
-                              boxShadow: isDark ? `0 0 8px ${barColor}80` : "none",
-                            }}
-                          />
+                            key={spool.id}
+                            className="low-stock-item"
+                            style={{ background: S.lowest }}
+                            onClick={() => navigate(showUrl("spool", spool.id))}
+                          >
+                            <div className="low-stock-left">
+                              <div
+                                className="low-stock-color-dot"
+                                style={{ backgroundColor: hex, boxShadow: isDark ? `0 0 14px ${hex}50` : `0 1px 3px rgba(0,0,0,0.12)` }}
+                              />
+                              <div className="low-stock-info">
+                                <h4>{getSpoolName(spool)}</h4>
+                                <p>Material: {spool.filament.material ?? "?"}</p>
+                              </div>
+                            </div>
+                            <div className="low-stock-right">
+                              <div className="low-stock-weight" style={{ color: barColor }}>
+                                {formatWeight(remaining, 0)} <span className="total">/ {formatWeight(total, 0)}</span>
+                              </div>
+                              <div className="low-stock-bar" style={{ background: S.highest }}>
+                                <div
+                                  className="low-stock-bar-fill"
+                                  style={{
+                                    width: `${Math.max(pct, 1)}%`,
+                                    backgroundColor: barColor,
+                                    boxShadow: isDark ? `0 0 8px ${barColor}80` : "none",
+                                  }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              ),
+            },
+            {
+              key: "materials",
+              label: (
+                <span>
+                  <ExperimentOutlined /> {t("home.by_material")}
+                </span>
+              ),
+              children: (
+                <div className="dash-section" style={{ background: S.low }}>
+                  <div className="material-list">
+                    {materialBreakdown.map(([material, data]) => {
+                      const maxWeight = materialBreakdown[0]?.[1].weight || 1;
+                      const pct = (data.weight / maxWeight) * 100;
+                      const color = matColors[material] ?? "#81ecff";
+                      return (
+                        <div key={material}>
+                          <div className="material-header">
+                            <span className="material-name">{material}</span>
+                            <span className="material-weight">{formatWeight(data.weight, 0)}</span>
+                          </div>
+                          <div className="material-bar" style={{ background: S.highest }}>
+                            <div
+                              className="material-bar-fill"
+                              style={{
+                                width: `${pct}%`,
+                                backgroundColor: color,
+                                boxShadow: isDark ? `0 0 12px ${color}40` : "none",
+                              }}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-
-          {/* Material Breakdown */}
-          <div className="dash-section" style={{ background: S.low }}>
-            <div className="dash-section-header">
-              <h3 className="dash-section-title">
-                <ExperimentOutlined />
-                {t("home.by_material")}
-              </h3>
-            </div>
-            <div className="material-list">
-              {materialBreakdown.map(([material, data]) => {
-                const maxWeight = materialBreakdown[0]?.[1].weight || 1;
-                const pct = (data.weight / maxWeight) * 100;
-                const color = matColors[material] ?? "#81ecff";
-                return (
-                  <div key={material}>
-                    <div className="material-header">
-                      <span className="material-name">{material}</span>
-                      <span className="material-weight">{formatWeight(data.weight, 0)}</span>
-                    </div>
-                    <div className="material-bar" style={{ background: S.highest }}>
-                      <div
-                        className="material-bar-fill"
-                        style={{
-                          width: `${pct}%`,
-                          backgroundColor: color,
-                          boxShadow: isDark ? `0 0 12px ${color}40` : "none",
-                        }}
-                      />
-                    </div>
+                      );
+                    })}
                   </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
+                </div>
+              ),
+            },
+            {
+              key: "vendors",
+              label: (
+                <span>
+                  <ShopOutlined /> {t("home.by_vendor")}
+                </span>
+              ),
+              children: (
+                <div className="dash-section" style={{ background: S.low }}>
+                  <div className="material-list">
+                    {vendorBreakdown.map(([vendor, count], idx) => {
+                      const maxCount = vendorBreakdown[0]?.[1] || 1;
+                      const pct = (count / maxCount) * 100;
+                      let barColor: string;
+                      if (idx === 0) {
+                        barColor = isDark ? "#81ecff" : "#0891b2";
+                      } else if (idx < 3) {
+                        barColor = isDark ? "#6ded00" : "#16a34a";
+                      } else {
+                        barColor = isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.2)";
+                      }
+                      return (
+                        <div key={vendor}>
+                          <div className="material-header">
+                            <span className="material-name">{vendor}</span>
+                            <span className="material-weight">{count} {t("spool.spool")}</span>
+                          </div>
+                          <div className="material-bar" style={{ background: S.highest }}>
+                            <div
+                              className="material-bar-fill"
+                              style={{
+                                width: `${pct}%`,
+                                backgroundColor: barColor,
+                                boxShadow: isDark ? `0 0 12px ${barColor}40` : "none",
+                              }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ),
+            },
+          ]}
+        />
 
         {/* Right Column — Recently Used + Locations */}
-        <div className="dash-col">
-          {/* Recently Used */}
-          <div className="dash-section" style={{ background: S.low }}>
+        <div className="dash-right-col">
+          <div className="dash-right-section" style={{ background: S.low }}>
             <div className="dash-section-header">
               <h3 className="dash-section-title">{t("home.recently_used")}</h3>
             </div>
@@ -377,8 +429,7 @@ export const Home = () => {
             )}
           </div>
 
-          {/* By Location */}
-          <div className="dash-section" style={{ background: S.low }}>
+          <div className="dash-right-section" style={{ background: S.low }}>
             <div className="dash-section-header">
               <h3 className="dash-section-title">
                 <EnvironmentOutlined />
