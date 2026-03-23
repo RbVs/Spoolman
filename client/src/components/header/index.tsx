@@ -46,7 +46,7 @@ export const Header = ({ sticky }: RefineThemedLayoutHeaderProps) => {
 
   return (
     <AntdLayout.Header style={headerStyles}>
-      <Space size="small" style={{ marginRight: "auto", opacity: 0.85, fontSize: 12 }}>
+      <Space size="small" style={{ marginRight: "auto", opacity: 0.85, fontSize: 12, marginLeft: isMobile ? 48 : 0 }}>
         {isMobile ? <Version /> : <span>{t("version")} <Version /></span>}
         <Button
           icon={<img src={getBasePath() + "/kofi_s_logo_nolabel.png"} style={{ height: "1.4em" }} />}
