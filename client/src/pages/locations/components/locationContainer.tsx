@@ -1,7 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { useList, useTranslate } from "@refinedev/core";
-import { Button, Spin } from "antd";
-import { useEffect, useMemo } from "react";
+import { Button, Input, Modal, Spin } from "antd";
+import { useEffect, useMemo, useState } from "react";
 import { useSetSetting } from "../../../utils/querySettings";
 import { ISpool } from "../../spools/model";
 import { EMPTYLOC, useLocations, useLocationsSpoolOrders, useRenameSpoolLocation } from "../functions";
@@ -162,19 +162,27 @@ export function LocationContainer() {
     return <div>Failed to load spools</div>;
   }
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [newLocationName, setNewLocationName] = useState("");
+  const [modalError, setModalError] = useState("");
+
   const addNewLocation = () => {
-    const baseLocationName = t("locations.new_location");
-    let newLocationName = baseLocationName;
+    const name = newLocationName.trim();
+    if (!name) {
+      setModalError(t("locations.error_empty") || "Name cannot be empty");
+      return;
+    }
+    if (locationsList.includes(name)) {
+      setModalError(t("locations.error_exists") || "Location already exists");
+      return;
+    }
 
     const newLocs = [...locationsList];
-    let i = 1;
-    while (newLocs.includes(newLocationName)) {
-      newLocationName = baseLocationName + " " + i;
-      i++;
-    }
-    newLocs.push(newLocationName);
-
+    newLocs.push(name);
     setLocationsSetting.mutate(newLocs);
+    setModalOpen(false);
+    setNewLocationName("");
+    setModalError("");
   };
 
   // Count totals
@@ -183,12 +191,38 @@ export function LocationContainer() {
 
   return (
     <div>
+      <Modal
+        title={t("locations.new_location")}
+        open={modalOpen}
+        onOk={addNewLocation}
+        onCancel={() => {
+          setModalOpen(false);
+          setNewLocationName("");
+          setModalError("");
+        }}
+        okText={t("buttons.create") || "Create"}
+        okButtonProps={{ disabled: !newLocationName.trim() }}
+      >
+        <Input
+          autoFocus
+          placeholder=""
+          value={newLocationName}
+          onChange={(e) => {
+            setNewLocationName(e.target.value);
+            setModalError("");
+          }}
+          onPressEnter={addNewLocation}
+          status={modalError ? "error" : undefined}
+          style={{ marginTop: 8 }}
+        />
+        {modalError && <div style={{ color: "#ff4d4f", fontSize: 12, marginTop: 4 }}>{modalError}</div>}
+      </Modal>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
         <span style={{ opacity: 0.6, fontSize: 13 }}>
           {totalSpools} {t("spool.spool", { count: totalSpools })} in {totalLocations}{" "}
           {t("locations.locations").toLowerCase()}
         </span>
-        <Button type="primary" icon={<PlusOutlined />} onClick={addNewLocation}>
+        <Button type="primary" icon={<PlusOutlined />} onClick={() => setModalOpen(true)}>
           {t("locations.new_location")}
         </Button>
       </div>
