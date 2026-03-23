@@ -31,3 +31,11 @@
   display: flex !important;
   flex-direction: column !important;
 }
+
+@media (max-width: 1024px) {
+  .spoolman-root .ant-layout-content > div {
+    flex: none !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+}

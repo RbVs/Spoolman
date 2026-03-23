@@ -72,7 +72,30 @@
 
 @media (max-width: 600px) {
   .kpi-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: compact KPI cards */
+@media (max-width: 768px) {
+  .kpi-grid {
+    gap: 8px;
+  }
+
+  .kpi-card {
+    padding: 12px 14px;
+  }
+
+  .kpi-card .kpi-bg-icon {
+    display: none;
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 22px;
+  }
+
+  .kpi-card .kpi-footer {
+    margin-top: 8px;
   }
 }
 
@@ -145,12 +168,6 @@
   grid-template-columns: 2fr 1fr;
   gap: 16px;
   overflow: hidden;
-}
-
-@media (max-width: 1024px) {
-  .dashboard-main {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Left column: Tabs */
@@ -498,4 +515,57 @@
 
 .empty-hero-btn:active {
   transform: scale(0.97);
+}
+
+/* ============================================
+   MOBILE OVERRIDES — must be LAST to win cascade
+   ============================================ */
+@media (max-width: 1024px) {
+  .dashboard {
+    overflow: auto;
+    flex: none;
+    height: auto;
+  }
+
+  .dashboard-main {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    flex: none;
+    height: auto;
+    gap: 16px;
+  }
+
+  .dashboard-main .ant-tabs {
+    height: auto;
+  }
+
+  .dashboard-main .ant-tabs-content-holder {
+    flex: none;
+    overflow: visible;
+  }
+
+  .dashboard-main .ant-tabs-content,
+  .dashboard-main .ant-tabs-tabpane-active {
+    height: auto;
+  }
+
+  .dashboard-main .ant-tabs-tabpane-active {
+    overflow-y: visible;
+  }
+
+  .dashboard-main .ant-tabs-tabpane-active > .dash-section {
+    min-height: 0;
+  }
+
+  .dash-right-col {
+    padding-top: 0;
+    height: auto;
+  }
+
+  .dash-right-section {
+    flex: none;
+    height: auto;
+    overflow-y: visible;
+  }
 }
