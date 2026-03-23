@@ -27,16 +27,13 @@ dayjs.extend(relativeTime);
 const { useToken } = theme;
 
 // Dark surface palette — works on top of the app's existing dark background
-const S = {
-  lowest: "#1a1a1a",
-  low: "#1f1f1f",
-  base: "#252525",
-  high: "#2a2a2a",
-  highest: "#313131",
-};
-
 export const Home = () => {
   const { token } = useToken();
+  const isDark = token.colorBgBase !== "#fff" && token.colorBgBase !== "#ffffff";
+
+  const S = isDark
+    ? { lowest: "#1a1a1a", low: "#1f1f1f", base: "#252525", high: "#2a2a2a", highest: "#313131" }
+    : { lowest: "#ffffff", low: "#f7f7f7", base: "#f0f0f0", high: "#e8e8e8", highest: "#e0e0e0" };
   const t = useTranslate();
   const navigate = useNavigate();
   const { showUrl } = useNavigation();
@@ -336,8 +333,8 @@ export const Home = () => {
                       <div
                         className={"timeline-dot" + (isFirst ? " active" : "")}
                         style={{
-                          backgroundColor: isFirst ? "#81ecff" : "rgba(255,255,255,0.12)",
-                          color: isFirst ? "#81ecff" : undefined,
+                          backgroundColor: isFirst ? token.colorPrimary : isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.1)",
+                          color: isFirst ? token.colorPrimary : undefined,
                         }}
                       />
                       <div>
@@ -373,8 +370,8 @@ export const Home = () => {
                   badgeBg = "rgba(109, 237, 0, 0.08)";
                   badgeColor = "#6ded00";
                 } else {
-                  badgeBg = "rgba(255, 255, 255, 0.04)";
-                  badgeColor = "rgba(255, 255, 255, 0.35)";
+                  badgeBg = isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(0, 0, 0, 0.04)";
+                  badgeColor = isDark ? "rgba(255, 255, 255, 0.35)" : "rgba(0, 0, 0, 0.4)";
                 }
                 return (
                   <div
