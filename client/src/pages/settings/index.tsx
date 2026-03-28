@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { useState } from "react";
 import { ExtraFieldsSettings } from "./extraFieldsSettings";
+import { EntityType } from "../../utils/queryFields";
 import { GeneralSettings } from "./generalSettings";
 import "./settings.css";
 
@@ -20,9 +21,9 @@ export const Settings = () => {
 
   const panels: Record<string, React.ReactNode> = {
     general: <GeneralSettings />,
-    "extra-spool": <ExtraFieldsSettings entityType="spool" />,
-    "extra-filament": <ExtraFieldsSettings entityType="filament" />,
-    "extra-vendor": <ExtraFieldsSettings entityType="vendor" />,
+    "extra-spool": <ExtraFieldsSettings entityType={EntityType.spool} />,
+    "extra-filament": <ExtraFieldsSettings entityType={EntityType.filament} />,
+    "extra-vendor": <ExtraFieldsSettings entityType={EntityType.vendor} />,
   };
 
   return (
